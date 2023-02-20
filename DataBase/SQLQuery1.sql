@@ -96,4 +96,38 @@ delete Status
 where id = @id
 go
 
-exec DeleteStatus 5
+--------------------------------------------------------
+
+create Procedure UpdateDLS
+@id int,
+@Name nvarchar(50),
+@Sale int,
+@Cost int,
+@gameId int
+as 
+update DLS set Name = @Name
+where id = @id
+update DLS set Sale = @Sale
+where id = @id
+update DLS set Cost = @Cost
+where id = @id
+update DLS set game_id = @gameId
+where id = @id
+go
+
+create Procedure AddDLS
+@Name nvarchar(50),
+@Sale int,
+@Cost int,
+@gameId int
+as
+insert DLS([Name], [Sale], [Cost], [game_id])
+values(@Name, @Sale, @Cost, @gameId)
+go
+
+create Procedure DeleteDLS
+@id int
+as
+delete DLS
+where id = @id
+go
