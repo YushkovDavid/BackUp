@@ -1,16 +1,11 @@
-# This is a sample Python script.
+import pyodbc
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+connection_string = 'DRIVER={SQL Server};SERVER=DESKTOP-MVCD165;DATABASE=project;UID=***;PWD=***'
+connection = pyodbc.connect(connection_string)
+cursor = connection.cursor()
 
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+id = 1
+get_all_info_about_game = "exec GetAllInfoOfGame"
+cursor.execute(f'get_all_info_about_game {id}')
+result = cursor.fetchone()
+print(result)
